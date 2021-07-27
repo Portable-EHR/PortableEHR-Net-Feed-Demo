@@ -34,9 +34,11 @@ namespace PortableEHRNetFeedDemo.Controllers
 
         [HttpPut]
         [Route("login")]
-        public void Login(string option)
+        public ActionResult Login(string option)
         {
             _logger.LogInformation("Call /server/login with option: " + option);
+            _state.serverLoginSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
@@ -111,9 +113,9 @@ namespace PortableEHRNetFeedDemo.Controllers
         
         [HttpGet]
         [Route("logs")]
-        public void GetServerLogs()
+        public String GetServerLogs()
         {
-            _logger.LogInformation("Get logs");
+            return _state.serverLogs.ToString();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

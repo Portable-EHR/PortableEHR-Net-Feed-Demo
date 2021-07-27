@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,7 +18,6 @@ namespace PortableEHRNetFeedDemo.Controllers
         {
             _logger = logger;
             _state = state;
-            
         }
         
         
@@ -32,6 +32,8 @@ namespace PortableEHRNetFeedDemo.Controllers
             var loginResponse =
                 JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
                     typeof(LoginResponse)) as LoginResponse;
+
+            _state.addLogLine("/login", selected, "OK");
             return loginResponse;
         }
         

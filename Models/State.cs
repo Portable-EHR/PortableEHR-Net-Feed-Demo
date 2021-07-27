@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace PortableEHRNetFeedDemo.Models
 {
@@ -28,7 +29,15 @@ namespace PortableEHRNetFeedDemo.Models
             public List<string> serverAppointmentOptions { get; set; } = new List<string>();
             public string serverAppointmentDispositionSelected { get; set; }
             public List<string> serverAppointmentDispositionsOptions { get; set; } = new List<string>();
-            public string serverLogs { get; set; }
+
+            public StringBuilder serverLogs { get; set; } = new StringBuilder();
+
+            public void addLogLine(string path, string answer, string msg)
+            {
+                DateTime date1 = DateTime.Now;
+                serverLogs.Insert(0, date1.ToLongTimeString() + " " + path + " -> " + answer + " " + msg + Environment.NewLine);
+            }
+            
             //endregion
             
             //region client

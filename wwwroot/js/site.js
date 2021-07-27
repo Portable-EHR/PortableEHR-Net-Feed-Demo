@@ -32,14 +32,12 @@ $(document).ready( function(){
             url: "/server/logs",
         });
         request.done(function (msg) {
-            for (let i = 0; i < msg.length; i++) {
-                $('.serverLog tbody').prepend('<tr><td>'+msg[i].timestamp+'</td><td>'+msg[i].method+'</td><td>'+msg[i].endpoint+'</td><td>'+msg[i].option+'</td></tr>');
-            }
+            $('.serverLog').text(msg);
         });
         request.fail(function () {
             console.error("Cannot pull servers log")
         });
-    }, 30000);
+    }, 3000);
 
     // Make client calls with selected options
     $(".feedHubApiCall").each(function(){

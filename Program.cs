@@ -20,7 +20,7 @@ namespace PortableEHRNetFeedDemo
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://localhost:4004").UseStartup<Startup>();
+                    webBuilder.UseUrls("https://localhost:4004").UseStartup<Startup>();
                 });
     }
 }
