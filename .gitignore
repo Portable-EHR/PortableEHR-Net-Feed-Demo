@@ -1,0 +1,8 @@
+/PortableEHRNetSDK.sln.DotSettings.user
+.idea/
+.DS_Store
+**/[Bb]in/
+**/[Oo]bj/
+**/[Dd]ebug/
+**/[Rr]elease/
+**/*.nupkg

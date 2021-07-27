@@ -1,0 +1,265 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Portable EHR .Net Feed Demo";
+}
+
+<div class="text-xl-center">
+    <!-- Title -->
+    <h1>Portable EHR .Net Feed Demo</h1>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col border">
+    <!-- Left -->
+    <h3>Responses to FeedHub requests (we implement the Feed API)</h3>
+
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/login">
+        <div>
+            <span class="p-3">POST /login</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverLoginOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverLoginSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patientSingle">
+        <div>
+            <span class="p-3">POST /feed/patient (pullSingle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPatientOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPatientSingleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patientBundle">
+        <div>
+            <span class="p-3">POST /feed/patient (pullBundle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPatientOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPatientBundleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patient/pehrReachability">
+        <div>
+            <span class="p-3">POST /feed/patient/pehrReachability</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPatientPehrReachabilityOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPatientPehrReachabilitySelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/practitionerSingle">
+        <div>
+            <span class="p-3">POST /feed/practitioner (pullSingle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPractitionerOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPractitionerSingleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/practitionerBundle">
+        <div>
+            <span class="p-3">POST /feed/practitioner (pullBundle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPractitionerOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPractitionerBundleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/privateMessage/content">
+        <div>
+            <span class="p-3">POST /feed/privateMessage/content</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPrivateMessageContentOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPrivateMessageContentSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/privateMessage/status">
+        <div>
+            <span class="p-3">POST /feed/privateMessage/status</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverPrivateMessageStatusOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverPrivateMessageStatusSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointmentSingle">
+        <div>
+            <span class="p-3">POST /feed/appointment (pullSingle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverAppointmentOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverAppointmentSingleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointmentBundle">
+        <div>
+            <span class="p-3">POST /feed/appointment (pullBundle)</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverAppointmentOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverAppointmentBundleSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+    
+    <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointment/disposition">
+        <div>
+            <span class="p-3">POST /feed/appointment/disposition</span>
+            <select class="option">
+                @foreach (var option in Model.state.serverAppointmentDispositionsOptions)
+                {
+                <option value="@option" selected="@(option == Model.state.serverAppointmentDispositionSelected)">@option</option>
+                }
+            </select>
+            <span class="status"></span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Servers calls logs</div>
+        <div class="card-body">
+            <table class="table table-striped table-dark serverLog">
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col border accordion">
+    <!-- Not Left -->
+    <h3>Request to FeedHub (we consume FeedHub API)</h3>
+
+    <div class="accordion" id="accordionClient">
+        <div class="card">
+            <div class="card-header" id="headingLogin">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="true" aria-controls="collapseLogin">
+                        POST /login
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseLogin" class="collapse show" aria-labelledby="headingLogin" data-parent="#accordionClient">
+                <div class="card-body feedHubApiCall" data-endpoint="/client/login">
+                    <div class="form-group w-100">
+                        <textarea rows="10" type="text" class="form-control">@Model.state.clientLoginRequestJson</textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingBackendPatientReachability">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseBackendPatientReachability" aria-expanded="true" aria-controls="collapseBackendPatientReachability">
+                        POST /backend/patient/reachability
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseBackendPatientReachability" class="collapse" aria-labelledby="headingBackendPatientReachability" data-parent="#accordionClient">
+                <div class="card-body feedHubApiCall" data-endpoint="/client/backend/patient/reachability">
+                    <div class="form-group w-100">
+                        <textarea rows="10" type="text" class="form-control">@Model.state.clientReachabilityRequestJson</textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header" id="headingBackendPrivateMessageNotification">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseBackendPrivateMessageNotification" aria-expanded="true" aria-controls="collapseBackendPrivateMessageNotification">
+                        POST /backend/privateMessage/notification
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseBackendPrivateMessageNotification" class="collapse" aria-labelledby="headingBackendPrivateMessageNotification" data-parent="#accordionClient">
+                <div class="card-body feedHubApiCall" data-endpoint="/client/backend/privateMessage/notification">
+                    <div class="form-group w-100">
+                        <textarea rows="10" type="text" class="form-control">@Model.state.clientPrivateMessateNotificationRequestJson</textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingBackendIDIssuers">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseBackendIDIssuers" aria-expanded="true" aria-controls="collapseBackendIDIssuers">
+                        POST /backend/idissuers
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseBackendIDIssuers" class="collapse" aria-labelledby="headingBackendIDIssuers" data-parent="#accordionClient">
+                <div class="card-body feedHubApiCall" data-endpoint="/client/backend/idissuers">
+                    <div class="form-group w-100">
+                        <textarea rows="10" type="text" class="form-control">@Model.state.clientIDIssuersRequestJson</textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Client calls responses</div>
+            <div class="card-body" style="max-width: 1000px">
+                <pre><code id="responseViewer"></code></pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
