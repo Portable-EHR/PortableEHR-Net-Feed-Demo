@@ -21,38 +21,38 @@ namespace PortableEHRNetFeedDemo
                                                     Path.DirectorySeparatorChar + "login" +
                                                     Path.DirectorySeparatorChar + "post";
         
-        public string SERVER_PATIENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                     Path.DirectorySeparatorChar + "patient" +
-                                                     Path.DirectorySeparatorChar + "post";
+        public static string SERVER_PATIENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                            Path.DirectorySeparatorChar + "patient" +
+                                                            Path.DirectorySeparatorChar + "post";
         
-        public string SERVER_REACHABILITY_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                          Path.DirectorySeparatorChar + "patient" +
-                                                          Path.DirectorySeparatorChar + "pehrReachability" +
-                                                          Path.DirectorySeparatorChar + "post";
+        public static string SERVER_REACHABILITY_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                                 Path.DirectorySeparatorChar + "patient" +
+                                                                 Path.DirectorySeparatorChar + "pehrReachability" +
+                                                                 Path.DirectorySeparatorChar + "post";
         
-        public string SERVER_PRATITIONER_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                         Path.DirectorySeparatorChar + "practitioner" +
-                                                         Path.DirectorySeparatorChar + "post";
+        public static string SERVER_PRATITIONER_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                                Path.DirectorySeparatorChar + "practitioner" +
+                                                                Path.DirectorySeparatorChar + "post";
 
-        public string SERVER_PM_CONTENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                        Path.DirectorySeparatorChar + "privateMessage" +
-                                                        Path.DirectorySeparatorChar + "content" +
-                                                        Path.DirectorySeparatorChar + "post";
+        public static string SERVER_PM_CONTENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                               Path.DirectorySeparatorChar + "privateMessage" +
+                                                               Path.DirectorySeparatorChar + "content" +
+                                                               Path.DirectorySeparatorChar + "post";
 
-        public string SERVER_PM_STATUS_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                       Path.DirectorySeparatorChar + "privateMessage" +
-                                                       Path.DirectorySeparatorChar + "status" +
-                                                       Path.DirectorySeparatorChar + "post";
+        public static string SERVER_PM_STATUS_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                              Path.DirectorySeparatorChar + "privateMessage" +
+                                                              Path.DirectorySeparatorChar + "status" +
+                                                              Path.DirectorySeparatorChar + "post";
 
-        public string SERVER_APPOINTMENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                         Path.DirectorySeparatorChar + "appointment" +
-                                                         Path.DirectorySeparatorChar + "post";
+        public static string SERVER_APPOINTMENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+                                                                Path.DirectorySeparatorChar + "appointment" +
+                                                                Path.DirectorySeparatorChar + "post";
 
-        public string SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar +
-                                                                     "feedResponses" + Path.DirectorySeparatorChar +
-                                                                     "appointment" +
-                                                                     Path.DirectorySeparatorChar + "disposition" +
-                                                                     Path.DirectorySeparatorChar + "post";
+        public static string SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar +
+                                                                            "feedResponses" + Path.DirectorySeparatorChar +
+                                                                            "appointment" +
+                                                                            Path.DirectorySeparatorChar + "disposition" +
+                                                                            Path.DirectorySeparatorChar + "post";
 
         // CLIENT
         private string CLIENT_LOGIN_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +

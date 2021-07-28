@@ -43,72 +43,92 @@ namespace PortableEHRNetFeedDemo.Controllers
         
         [HttpPut]
         [Route("feed/patientSingle")]
-        public void SelectPatientSingle(string option)
+        public ActionResult SelectPatientSingle(string option)
         {
             _logger.LogInformation("Call patientSingle with option: " + option);
+            _state.serverPatientSingleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/patientBundle")]
-        public void SelectPatientBundle(string option)
+        public ActionResult SelectPatientBundle(string option)
         {
             _logger.LogInformation("Call patientBundle with option: " + option);
+            _state.serverPatientBundleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/patient/pehrReachability")]
-        public void SelectPatientPEHRReachability(string option)
+        public ActionResult SelectPatientPEHRReachability(string option)
         {
             _logger.LogInformation("Call pehrReachability with option: " + option);
+            _state.serverPatientPehrReachabilitySelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/practitionerSingle")]
-        public void SelectPractitionerSingle(string option)
+        public ActionResult SelectPractitionerSingle(string option)
         {
             _logger.LogInformation("Call practitionerSingle with option: " + option);
+            _state.serverPatientSingleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/practitionerBundle")]
-        public void SelectPractitionerBundle(string option)
+        public ActionResult SelectPractitionerBundle(string option)
         {
             _logger.LogInformation("Call practitionerBundle with option: " + option);
+            _state.serverPractitionerBundleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/privateMessage/content")]
-        public void SelectPrivateMessageContent(string option)
+        public ActionResult SelectPrivateMessageContent(string option)
         {
             _logger.LogInformation("Call privateMessage/content with option: " + option);
+            _state.serverPrivateMessageContentSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/privateMessage/status")]
-        public void SelectStatus(string option)
+        public ActionResult SelectStatus(string option)
         {
             _logger.LogInformation("Call privateMessage/status with option: " + option);
+            _state.serverPrivateMessageStatusSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/appointmentSingle")]
-        public void SelectAppointmentSingle(string option)
+        public ActionResult SelectAppointmentSingle(string option)
         {
             _logger.LogInformation("Call appointmentSingle with option: " + option);
+            _state.serverAppointmentSingleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/appointmentBundle")]
-        public void SelectAppointmentBundle(string option)
+        public ActionResult SelectAppointmentBundle(string option)
         {
             _logger.LogInformation("Call appointmentBundle with option: " + option);
+            _state.serverAppointmentBundleSelected = option;
+            return new EmptyResult();
         }
         
         [HttpPut]
         [Route("feed/appointment/disposition")]
-        public void SelectAppointmentDisposition(string option)
+        public ActionResult SelectAppointmentDisposition(string option)
         {
             _logger.LogInformation("Call appointment/disposition with option: " + option);
+            _state.serverAppointmentDispositionSelected = option;
+            return new EmptyResult();
         }
         
         [HttpGet]

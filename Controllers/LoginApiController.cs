@@ -23,14 +23,13 @@ namespace PortableEHRNetFeedDemo.Controllers
         
         [HttpPost]
         [Route("login")]
-        public LoginResponse Login(LoginRequest request)
+        public LoginResponse Login([FromBody] LoginRequest request)
         {
             _logger.LogInformation("/login called");
 
             string selected = Startup.SERVER_LOGIN_RESPONSE_ROOT + Path.DirectorySeparatorChar +
                               _state.serverLoginSelected;
-            var loginResponse =
-                JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+            var loginResponse = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
                     typeof(LoginResponse)) as LoginResponse;
 
             _state.addLogLine("/login", selected, "OK");
