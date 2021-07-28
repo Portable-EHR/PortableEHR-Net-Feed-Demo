@@ -6,13 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PortableEHRNetFeedDemo.Models;
 using PortableEHRNetSDK.Model.Server;
+using PortableEHRNetSDK.Network.Server.Request.Appointment;
 using PortableEHRNetSDK.Network.Server.Request.Login;
 using PortableEHRNetSDK.Network.Server.Request.Patient;
 using PortableEHRNetSDK.Network.Server.Request.Practitioner;
+using PortableEHRNetSDK.Network.Server.Request.Privatemessage;
 using PortableEHRNetSDK.Network.Server.Response;
+using PortableEHRNetSDK.Network.Server.Response.Appointment;
 using PortableEHRNetSDK.Network.Server.Response.Login;
 using PortableEHRNetSDK.Network.Server.Response.Patient;
 using PortableEHRNetSDK.Network.Server.Response.Practitioner;
+using PortableEHRNetSDK.Network.Server.Response.Privatemessage;
 
 namespace PortableEHRNetFeedDemo.Controllers
 {
@@ -104,6 +108,93 @@ namespace PortableEHRNetFeedDemo.Controllers
             }
 
             _state.addLogLine("/feed/practitioner", selected, "OK");
+            return response;
+        }
+        
+        [HttpPost]
+        [Route("privateMessage/content")]
+        public PrivateMessageContentResponse PrivateMethodContent([FromBody] PrivateMessageContentRequest request)
+        {
+            _logger.LogInformation("/feed/privateMessage/content called");
+
+            string selected = Startup.SERVER_PM_CONTENT_RESPONSE_ROOT + Path.DirectorySeparatorChar +
+                              _state.serverPrivateMessageContentSelected;
+            PrivateMessageContentResponse response = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+                typeof(PrivateMessageContentResponse)) as PrivateMessageContentResponse;
+
+            _state.addLogLine("/feed/privateMessage/content", selected, "OK");
+            return response;
+        }
+        
+        [HttpPost]
+        [Route("privateMessage/status")]
+        public PrivateMessageContentResponse PrivateMethodStatus([FromBody] PrivateMessageContentRequest request)
+        {
+            _logger.LogInformation("/feed/privateMessage/status called");
+
+            string selected = Startup.SERVER_PM_STATUS_RESPONSE_ROOT + Path.DirectorySeparatorChar +
+                              _state.serverPrivateMessageStatusSelected;
+            PrivateMessageContentResponse response = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+                typeof(PrivateMessageContentResponse)) as PrivateMessageContentResponse;
+
+            _state.addLogLine("/feed/privateMessage/status", selected, "OK");
+            return response;
+        }
+        
+        [HttpPost]
+        [Route("appointment")]
+        public AppointmentPullResponse Appointment([FromBody] AppointmentPullRequest request)
+        {
+            _logger.LogInformation("/feed/appointment called");
+
+            string selected = null;
+            AppointmentPullResponse response = null;
+            if (request.command.Equals("pullSingle"))
+            {
+                selected = Startup.SERVER_APPOINTMENT_RESPONSE_ROOT + Path.DirectorySeparatorChar +
+                           _state.serverAppointmentSingleSelected;
+                response = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+                    typeof(AppointmentPullResponse)) as AppointmentPullResponse;
+                
+                AppointmentPullSingleResponseContent appointment = ((AppointmentPullSingleResponseContent) response.responseContent);
+                appointment.feedItemId = Guid.NewGuid();
+                appointment.id = appointment.feedItemId.ToString();
+                appointment.lastUpdated = DateTime.Now;
+                appointment.startTime = DateTime.Now.Add(TimeSpan.FromHours(48));
+                appointment.endTime = DateTime.Now.Add(TimeSpan.FromHours(49));
+            }
+            else if (request.command.Equals("pullBundle"))
+            {
+                selected = Startup.SERVER_APPOINTMENT_RESPONSE_ROOT + Path.DirectorySeparatorChar +
+                           _state.serverAppointmentBundleSelected;
+                response = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+                    typeof(AppointmentPullResponse)) as AppointmentPullResponse;
+                foreach (var appointment in ((AppointmentPullBundleResponseContent)response.responseContent).results)
+                {
+                    appointment.feedItemId = Guid.NewGuid();
+                    appointment.id = appointment.feedItemId.ToString();
+                    appointment.lastUpdated = DateTime.Now;
+                    appointment.startTime = DateTime.Now.Add(TimeSpan.FromHours(48));
+                    appointment.endTime = DateTime.Now.Add(TimeSpan.FromHours(49));
+                }
+            }
+
+            _state.addLogLine("/feed/appointment", selected, "OK");
+            return response;
+        }
+        
+        [HttpPost]
+        [Route("appointment/disposition")]
+        public AppointmentDispositionResponse AppointmentDisposition([FromBody] AppointmentDispositionRequest request)
+        {
+            _logger.LogInformation("/feed/appointment/disposition called");
+
+            string selected = Startup.SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT + Path.DirectorySeparatorChar +
+                              _state.serverAppointmentDispositionSelected;
+            AppointmentDispositionResponse response = JsonSerializer.Deserialize(System.IO.File.ReadAllText(selected),
+                typeof(AppointmentDispositionResponse)) as AppointmentDispositionResponse;
+
+            _state.addLogLine("/feed/appointment/disposition", selected, "OK");
             return response;
         }
     }
