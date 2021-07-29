@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright © Portable EHR inc, 2021
+// https://portableehr.com/
+
 using System.Diagnostics;
 using System.Dynamic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PortableEHRNetFeedDemo.Models;
-using PortableEHRNetSDK.Network.Client.Request.Login;
 
 namespace PortableEHRNetFeedDemo.Controllers
 {
@@ -15,7 +13,7 @@ namespace PortableEHRNetFeedDemo.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly State _state;
-        
+
         public HomeController(ILogger<HomeController> logger, State state)
         {
             _logger = logger;
@@ -26,9 +24,9 @@ namespace PortableEHRNetFeedDemo.Controllers
         public IActionResult Index()
         {
             dynamic context = new ExpandoObject();
-            
+
             context.state = _state;
-            
+
             return View(context);
         }
 

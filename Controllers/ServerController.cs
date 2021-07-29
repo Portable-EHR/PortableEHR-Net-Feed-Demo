@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright © Portable EHR inc, 2021
+// https://portableehr.com/
+
 using System.Diagnostics;
 using System.Dynamic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PortableEHRNetFeedDemo.Models;
-using PortableEHRNetSDK.Network.Client.Request.Login;
 
 namespace PortableEHRNetFeedDemo.Controllers
 {
@@ -16,7 +14,7 @@ namespace PortableEHRNetFeedDemo.Controllers
     {
         private readonly ILogger<ServerController> _logger;
         private readonly State _state;
-        
+
         public ServerController(ILogger<ServerController> logger, State state)
         {
             _logger = logger;
@@ -26,9 +24,9 @@ namespace PortableEHRNetFeedDemo.Controllers
         public IActionResult Index()
         {
             dynamic context = new ExpandoObject();
-            
+
             context.state = _state;
-            
+
             return View(context);
         }
 
@@ -40,7 +38,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverLoginSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/patientSingle")]
         public ActionResult SelectPatientSingle(string option)
@@ -49,7 +47,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPatientSingleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/patientBundle")]
         public ActionResult SelectPatientBundle(string option)
@@ -58,7 +56,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPatientBundleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/patient/pehrReachability")]
         public ActionResult SelectPatientPEHRReachability(string option)
@@ -67,7 +65,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPatientPehrReachabilitySelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/practitionerSingle")]
         public ActionResult SelectPractitionerSingle(string option)
@@ -76,7 +74,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPatientSingleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/practitionerBundle")]
         public ActionResult SelectPractitionerBundle(string option)
@@ -85,7 +83,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPractitionerBundleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/privateMessage/content")]
         public ActionResult SelectPrivateMessageContent(string option)
@@ -94,7 +92,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPrivateMessageContentSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/privateMessage/status")]
         public ActionResult SelectStatus(string option)
@@ -103,7 +101,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverPrivateMessageStatusSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/appointmentSingle")]
         public ActionResult SelectAppointmentSingle(string option)
@@ -112,7 +110,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverAppointmentSingleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/appointmentBundle")]
         public ActionResult SelectAppointmentBundle(string option)
@@ -121,7 +119,7 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverAppointmentBundleSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpPut]
         [Route("feed/appointment/disposition")]
         public ActionResult SelectAppointmentDisposition(string option)
@@ -130,10 +128,10 @@ namespace PortableEHRNetFeedDemo.Controllers
             _state.serverAppointmentDispositionSelected = option;
             return new EmptyResult();
         }
-        
+
         [HttpGet]
         [Route("logs")]
-        public String GetServerLogs()
+        public string GetServerLogs()
         {
             return _state.serverLogs.ToString();
         }

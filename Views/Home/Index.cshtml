@@ -20,137 +20,137 @@
             <select class="option">
                 @foreach (var option in Model.state.serverLoginOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverLoginSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverLoginSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patientSingle">
         <div>
             <span class="p-3">POST /feed/patient (pullSingle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPatientOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPatientSingleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPatientSingleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patientBundle">
         <div>
             <span class="p-3">POST /feed/patient (pullBundle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPatientOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPatientBundleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPatientBundleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/patient/pehrReachability">
         <div>
             <span class="p-3">POST /feed/patient/pehrReachability</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPatientPehrReachabilityOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPatientPehrReachabilitySelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPatientPehrReachabilitySelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/practitionerSingle">
         <div>
             <span class="p-3">POST /feed/practitioner (pullSingle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPractitionerOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPractitionerSingleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPractitionerSingleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/practitionerBundle">
         <div>
             <span class="p-3">POST /feed/practitioner (pullBundle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPractitionerOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPractitionerBundleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPractitionerBundleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/privateMessage/content">
         <div>
             <span class="p-3">POST /feed/privateMessage/content</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPrivateMessageContentOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPrivateMessageContentSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPrivateMessageContentSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/privateMessage/status">
         <div>
             <span class="p-3">POST /feed/privateMessage/status</span>
             <select class="option">
                 @foreach (var option in Model.state.serverPrivateMessageStatusOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverPrivateMessageStatusSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverPrivateMessageStatusSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointmentSingle">
         <div>
             <span class="p-3">POST /feed/appointment (pullSingle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverAppointmentOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverAppointmentSingleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverAppointmentSingleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointmentBundle">
         <div>
             <span class="p-3">POST /feed/appointment (pullBundle)</span>
             <select class="option">
                 @foreach (var option in Model.state.serverAppointmentOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverAppointmentBundleSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverAppointmentBundleSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
         </div>
     </div>
-    
+
     <div class="card-header container-fluid feedApiOption" data-endpoint="/server/feed/appointment/disposition">
         <div>
             <span class="p-3">POST /feed/appointment/disposition</span>
             <select class="option">
                 @foreach (var option in Model.state.serverAppointmentDispositionsOptions)
                 {
-                <option value="@option" selected="@(option == Model.state.serverAppointmentDispositionSelected)">@option</option>
+                    <option value="@option" selected="@(option == Model.state.serverAppointmentDispositionSelected)">@option</option>
                 }
             </select>
             <span class="status"></span>
@@ -159,7 +159,9 @@
 
     <div class="card">
         <div class="card-header">Servers calls logs</div>
-        <div class="card-body" style="max-width: 800px"><pre class="serverLog"></pre></div>
+        <div class="card-body" style="max-width: 800px">
+            <pre class="serverLog"></pre>
+        </div>
     </div>
 </div>
 
@@ -207,7 +209,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card">
             <div class="card-header" id="headingBackendPrivateMessageNotification">
                 <h2 class="mb-0">
@@ -247,7 +249,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card">
             <div class="card-header">Client calls responses</div>
             <div class="card-body" style="max-width: 800px">

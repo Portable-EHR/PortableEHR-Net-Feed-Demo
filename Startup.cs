@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
+// Copyright © Portable EHR inc, 2021
+// https://portableehr.com/
+
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using PortableEHRNetFeedDemo.Models;
 
 namespace PortableEHRNetFeedDemo
@@ -18,21 +15,23 @@ namespace PortableEHRNetFeedDemo
     {
         //SERVER
         public static string SERVER_LOGIN_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                    Path.DirectorySeparatorChar + "login" +
-                                                    Path.DirectorySeparatorChar + "post";
-        
+                                                          Path.DirectorySeparatorChar + "login" +
+                                                          Path.DirectorySeparatorChar + "post";
+
         public static string SERVER_PATIENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
                                                             Path.DirectorySeparatorChar + "patient" +
                                                             Path.DirectorySeparatorChar + "post";
-        
-        public static string SERVER_REACHABILITY_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                                 Path.DirectorySeparatorChar + "patient" +
-                                                                 Path.DirectorySeparatorChar + "pehrReachability" +
-                                                                 Path.DirectorySeparatorChar + "post";
-        
-        public static string SERVER_PRATITIONER_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                                Path.DirectorySeparatorChar + "practitioner" +
-                                                                Path.DirectorySeparatorChar + "post";
+
+        public static string SERVER_REACHABILITY_RESPONSE_ROOT =
+            "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+            Path.DirectorySeparatorChar + "patient" +
+            Path.DirectorySeparatorChar + "pehrReachability" +
+            Path.DirectorySeparatorChar + "post";
+
+        public static string SERVER_PRATITIONER_RESPONSE_ROOT =
+            "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+            Path.DirectorySeparatorChar + "practitioner" +
+            Path.DirectorySeparatorChar + "post";
 
         public static string SERVER_PM_CONTENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
                                                                Path.DirectorySeparatorChar + "privateMessage" +
@@ -44,40 +43,46 @@ namespace PortableEHRNetFeedDemo
                                                               Path.DirectorySeparatorChar + "status" +
                                                               Path.DirectorySeparatorChar + "post";
 
-        public static string SERVER_APPOINTMENT_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
-                                                                Path.DirectorySeparatorChar + "appointment" +
-                                                                Path.DirectorySeparatorChar + "post";
+        public static string SERVER_APPOINTMENT_RESPONSE_ROOT =
+            "mocks" + Path.DirectorySeparatorChar + "feedResponses" +
+            Path.DirectorySeparatorChar + "appointment" +
+            Path.DirectorySeparatorChar + "post";
 
         public static string SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT = "mocks" + Path.DirectorySeparatorChar +
-                                                                            "feedResponses" + Path.DirectorySeparatorChar +
+                                                                            "feedResponses" +
+                                                                            Path.DirectorySeparatorChar +
                                                                             "appointment" +
-                                                                            Path.DirectorySeparatorChar + "disposition" +
+                                                                            Path.DirectorySeparatorChar +
+                                                                            "disposition" +
                                                                             Path.DirectorySeparatorChar + "post";
 
+        private readonly string CLIENT_IDISSUERS_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
+                                                                Path.DirectorySeparatorChar + "backend" +
+                                                                Path.DirectorySeparatorChar + "idIssuers" +
+                                                                Path.DirectorySeparatorChar + "post" +
+                                                                Path.DirectorySeparatorChar + "default.json";
+
         // CLIENT
-        private string CLIENT_LOGIN_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
-                                                   Path.DirectorySeparatorChar + "login" + Path.DirectorySeparatorChar +
-                                                   "post" + Path.DirectorySeparatorChar + "default.json";
+        private readonly string CLIENT_LOGIN_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
+                                                            Path.DirectorySeparatorChar + "login" +
+                                                            Path.DirectorySeparatorChar +
+                                                            "post" + Path.DirectorySeparatorChar + "default.json";
 
-        private string CLIENT_REACHABILITY_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
-                                                          Path.DirectorySeparatorChar + "backend" +
-                                                          Path.DirectorySeparatorChar + "patient" +
-                                                          Path.DirectorySeparatorChar + "reachability" +
-                                                          Path.DirectorySeparatorChar + "post" +
-                                                          Path.DirectorySeparatorChar + "default.json";
+        private readonly string CLIENT_PRIVATE_MESSAGE_REQUEST_JSON =
+            "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
+            Path.DirectorySeparatorChar + "backend" +
+            Path.DirectorySeparatorChar + "privateMessage" +
+            Path.DirectorySeparatorChar + "notifications" +
+            Path.DirectorySeparatorChar + "post" +
+            Path.DirectorySeparatorChar + "default.json";
 
-        private string CLIENT_PRIVATE_MESSAGE_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
-                                                             Path.DirectorySeparatorChar + "backend" +
-                                                             Path.DirectorySeparatorChar + "privateMessage" +
-                                                             Path.DirectorySeparatorChar + "notifications" +
-                                                             Path.DirectorySeparatorChar + "post" +
-                                                             Path.DirectorySeparatorChar + "default.json";
-
-        private string CLIENT_IDISSUERS_REQUEST_JSON = "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
-                                                       Path.DirectorySeparatorChar + "backend" +
-                                                       Path.DirectorySeparatorChar + "idIssuers" +
-                                                       Path.DirectorySeparatorChar + "post" +
-                                                       Path.DirectorySeparatorChar + "default.json";
+        private readonly string CLIENT_REACHABILITY_REQUEST_JSON =
+            "mocks" + Path.DirectorySeparatorChar + "feedRequests" +
+            Path.DirectorySeparatorChar + "backend" +
+            Path.DirectorySeparatorChar + "patient" +
+            Path.DirectorySeparatorChar + "reachability" +
+            Path.DirectorySeparatorChar + "post" +
+            Path.DirectorySeparatorChar + "default.json";
 
         public Startup(IConfiguration configuration)
         {
@@ -110,82 +115,63 @@ namespace PortableEHRNetFeedDemo
             app.UseAuthorization();
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         private State LoadState()
         {
-            State state = new State();
+            var state = new State();
 
             // server
             state.serverLoginSelected = "default.json";
             state.serverLoginOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_LOGIN_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_LOGIN_RESPONSE_ROOT))
                 state.serverLoginOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverPatientSingleSelected = "single.json";
             state.serverPatientBundleSelected = "bundle_empty.json";
             state.serverPatientOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_PATIENT_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_PATIENT_RESPONSE_ROOT))
                 state.serverPatientOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverPatientPehrReachabilitySelected = "default.json";
             state.serverPatientPehrReachabilityOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_REACHABILITY_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_REACHABILITY_RESPONSE_ROOT))
                 state.serverPatientPehrReachabilityOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverPractitionerSingleSelected = "single.json";
             state.serverPractitionerBundleSelected = "bundle_empty.json";
             state.serverPractitionerOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_PRATITIONER_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_PRATITIONER_RESPONSE_ROOT))
                 state.serverPractitionerOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverPrivateMessageContentSelected = "default.json";
             state.serverPrivateMessageContentOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_PM_CONTENT_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_PM_CONTENT_RESPONSE_ROOT))
                 state.serverPrivateMessageContentOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverPrivateMessageStatusSelected = "default.json";
             state.serverPrivateMessageStatusOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_PM_STATUS_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_PM_STATUS_RESPONSE_ROOT))
                 state.serverPrivateMessageStatusOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverAppointmentSingleSelected = "single_confirmed.json";
             state.serverAppointmentBundleSelected = "bundle_empty.json";
             state.serverAppointmentOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_APPOINTMENT_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_APPOINTMENT_RESPONSE_ROOT))
                 state.serverAppointmentOptions.Add(new FileInfo(file).Name);
-            }
-            
+
             state.serverAppointmentDispositionSelected = "default.json";
             state.serverAppointmentDispositionsOptions.Clear();
-            foreach (string file in Directory.EnumerateFiles(SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT))
-            {
+            foreach (var file in Directory.EnumerateFiles(SERVER_APPOINTMENT_DISPOSITION_RESPONSE_ROOT))
                 state.serverAppointmentDispositionsOptions.Add(new FileInfo(file).Name);
-            }
 
             // client
             state.clientLoginRequestJson = File.ReadAllText(CLIENT_LOGIN_REQUEST_JSON);
             state.clientReachabilityRequestJson = File.ReadAllText(CLIENT_REACHABILITY_REQUEST_JSON);
             state.clientPrivateMessateNotificationRequestJson = File.ReadAllText(CLIENT_PRIVATE_MESSAGE_REQUEST_JSON);
             state.clientIDIssuersRequestJson = File.ReadAllText(CLIENT_IDISSUERS_REQUEST_JSON);
-            
+
             return state;
         }
     }
